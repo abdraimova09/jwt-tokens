@@ -9,7 +9,7 @@ import { useAuthContext } from '../../context/authContext';
 const SignUp = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { signUp, user } = useAuthContext()
+    const { signUp, error } = useAuthContext()
     console.log(email, password)
 
     function handleRegister(email, password) {
@@ -18,32 +18,21 @@ const SignUp = () => {
 
 
     return (
-        <div>
-            sign Up
-            <Box
-                component="form"
-                sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <TextField id="outlined-basic"
-                    label="email"
-                    variant="outlined"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email} />
-                <TextField id="outlined-basic"
-                    label="password"
-                    variant="outlined"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password} />
+        <div style={{ display: "flex", flexDirection: "column", width: "30vw", margin: "20vh auto", textAlign: "center" }}>
+            <h1>Register</h1>
+            {error ? <h2>{error}</h2> : null}
+            <TextField id="outlined-basic"
+                label="email"
+                variant="outlined"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email} />
+            <TextField id="outlined-basic"
+                label="password"
+                variant="outlined"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password} />
 
-            </Box>
-            <Stack spacing={2} direction="row">
-                <Button variant="contained" onClick={() => handleRegister(email, password)}>Sign Up</Button>
-                <Button variant="outlined">Sign In</Button>
-            </Stack>
+            <Button variant="contained" onClick={() => handleRegister(email, password)}>Sign Up</Button>
         </div>
     );
 };
