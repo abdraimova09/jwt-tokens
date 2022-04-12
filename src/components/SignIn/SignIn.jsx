@@ -5,15 +5,17 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useAuthContext } from '../../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+    const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const { signIn, error } = useAuthContext()
     // console.log(email, password)
 
     function handleLogin(email, password) {
-        signIn(email, password)
+        signIn(email, password, navigate)
     }
 
 
