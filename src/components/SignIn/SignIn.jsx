@@ -9,11 +9,11 @@ import { useAuthContext } from '../../context/authContext';
 const SignIn = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { signUp, user } = useAuthContext()
-    console.log(email, password)
+    const { signIn, error } = useAuthContext()
+    // console.log(email, password)
 
     function handleLogin(email, password) {
-        // signUp({ email, password })
+        signIn(email, password)
     }
 
 

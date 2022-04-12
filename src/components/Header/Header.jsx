@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@mui/material/Button';
 
 import { useAuthContext } from '../../context/authContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
-    const { user } = useAuthContext()
+    const { user, checkAuth } = useAuthContext()
     const location = useLocation()
     const navigate = useNavigate()
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            checkAuth()
+        }
+    }, [])
     return (
         <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", marginRight: "10vw" }}>
             {user ? <h2>User: {user} <Button variant="outlined">Logout</Button>
